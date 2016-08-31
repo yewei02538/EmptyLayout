@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="me.weyye.emptylayout.MainActivity">
+
+    <me.weyye.library.EmptyLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/emptyLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:elEmptyLayout="@layout/layout_empty"
+        app:elErrorLayout="@layout/layout_error"
+        app:elLoadingLayout="@layout/layout_loading">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+    </me.weyye.library.EmptyLayout>
+
+</RelativeLayout>
