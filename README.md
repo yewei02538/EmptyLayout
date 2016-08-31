@@ -3,3 +3,4 @@
 
 ![](/device-2016-08-30-180056 00_00_00-00_00_10~1.gif)
 
+详细请见:http://www.weyye.me/detail/empty-layout/
