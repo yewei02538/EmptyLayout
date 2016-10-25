@@ -3,6 +3,7 @@ package me.weyye.emptylayout;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -20,6 +21,7 @@ public class MainActivity extends Activity {
     private RecyclerView recyclerView;
     private List<String> list = new ArrayList<>();
     private MyAdapter adapter;
+    private SwipeRefreshLayout srl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,7 @@ public class MainActivity extends Activity {
     private void initView() {
         emptyLayout = (EmptyLayout) findViewById(R.id.emptyLayout);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        srl = (SwipeRefreshLayout) findViewById(R.id.srl);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(adapter = new MyAdapter(list));
         //绑定
@@ -46,6 +49,13 @@ public class MainActivity extends Activity {
                 loadData();
             }
         });
+        srl.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                srl.setRefreshing(false);
+                loadData();
+            }
+        });
     }
 
     private void loadData() {
@@ -54,6 +64,8 @@ public class MainActivity extends Activity {
         mHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
+                //为了防止重复调用
+                mHandler.removeCallbacks(this);
                 Random r = new Random();
                 int res = r.nextInt(10);
 
